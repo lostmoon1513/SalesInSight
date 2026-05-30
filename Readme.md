@@ -55,7 +55,8 @@ Provides post-call coaching such as:
 
 Uses:
 
-* Cloudinary for media storage
+* Direct Cloudinary uploads from React frontend
+* Secure Cloudinary CDN URLs
 * Google multimodal AI for direct audio understanding
 
 ---
@@ -69,13 +70,13 @@ Uses:
 Upload Audio (.mp3/.wav)
         │
         ▼
-[ FastAPI Backend ]
-        │
-        ▼
 [ Cloudinary Media Storage ]
         │
         ▼
 Secure CDN URL Generated
+        │
+        ▼
+[ FastAPI Backend ]
         │
         ▼
 [ Gemini Multimodal AI ]
@@ -228,12 +229,12 @@ Create a `.env` file inside backend directory:
 ```env
 GEMINI_API_KEY=your_gemini_api_key
 
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_cloudinary_api_key
-CLOUDINARY_API_SECRET=your_cloudinary_api_secret
-
 PORT=8000
 ```
+
+> Note:
+> Audio files are uploaded directly from the React frontend to Cloudinary using an unsigned upload preset.
+> Cloudinary credentials are not required in the backend.
 
 ---
 
@@ -284,7 +285,6 @@ http://localhost:5173
 ```json
 {
   "id": "call_001",
-  "fileName": "sales_call.mp3",
   "cloudinaryUrl": "https://res.cloudinary.com/demo/video/upload/sample.mp3",
   "timestamp": "2026-05-28T13:24:34Z",
   "metrics": {
@@ -355,13 +355,13 @@ Current MVP includes:
 
 * Backend Architecture
 * FastAPI APIs
-* Cloudinary Integration
 * Gemini Prompt Engineering
 * Database Design
 
 ## Developer B
 
 * Frontend Development
+* Cloudinary Upload Integration
 * Dashboard UI/UX
 * Charts & Visualization
 * State Management
@@ -416,9 +416,9 @@ This project is licensed under the MIT License.
 
 Built using:
 
-* [FastAPI](https://fastapi.tiangolo.com?utm_source=chatgpt.com)
-* [Google Gemini AI](https://ai.google.dev?utm_source=chatgpt.com)
-* [Cloudinary](https://cloudinary.com?utm_source=chatgpt.com)
-* [React.js](https://react.dev?utm_source=chatgpt.com)
-* [TailwindCSS](https://tailwindcss.com?utm_source=chatgpt.com)
-* [Recharts](https://recharts.org?utm_source=chatgpt.com)
+* FastAPI
+* Google Gemini AI
+* Cloudinary
+* React.js
+* TailwindCSS
+* Recharts
